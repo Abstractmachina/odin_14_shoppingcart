@@ -1,24 +1,49 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
+import { Item } from "../types/Item";
+
+import '../styles/CategoryPage.scss';
 
 
-// type CategoryProps = {
-//     category:string;
-// }
 
-const CategoryPage: FC = ( ): ReactElement => {
+type CategoryProps = {
+    inventory:Item[];
+}
+
+const CategoryPage: FC<CategoryProps> = ({inventory} ): ReactElement => {
 
     const {category} = useParams();
 
-    useEffect(() => {
-        console.log(category);
-    })
+    const [products, setProducts] = useState(getProducts(category));
 
+    useEffect(() => {
+        setProducts(getProducts(category));
+    },[category])
+
+
+    function getProducts(category:string|undefined) {
+        if (category === 'all') return inventory;
+       let result = inventory.filter(item => item.category === category)
+       return result;
+    };
     
     return (
     
     <div className="product-page">
-        Category {category}
+        { 
+            products.map(product => {
+                return (
+                <div className="product-card" key={product.name}>
+                    <div className="product-thumbnail">
+                        <img src={require(`../assets/${product.image}`)} alt={"Picture of "+product.name}/>
+                    </div>
+                    <h2>{product.name}</h2>
+                    <h3>EUR { product.unitPrice}</h3>
+                    <h4>Flavors:</h4>
+                    <p>{product.flavors}</p>
+                </div>
+            )}) 
+        }
     </div>
     );
 }

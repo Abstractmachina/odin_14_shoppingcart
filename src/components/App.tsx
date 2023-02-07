@@ -24,9 +24,9 @@ const App: FC = () : ReactElement => {
             <Nav />
             <Routes>
                 <Route path='/' element={<HomePage/>} />
-                <Route path='/shop' element={<ShopPage getCategories = {getCategories}/>}>
-                  <Route index element={<Navigate to="all" replace />} />
-                  <Route path=':category' element={<CategoryPage />} />
+                <Route path='/shop/*' element={<ShopPage getCategories = {getCategories}/>}>
+                  {/* <Route index element={<Navigate to="all" replace />} />
+                  <Route path=':category' element={<CategoryPage />} /> */}
                 </Route>
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/shoppingcart' element={<ShoppingCart/>}/>

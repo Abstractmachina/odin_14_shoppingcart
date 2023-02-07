@@ -1,7 +1,10 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, Route, Routes, Navigate } from "react-router-dom";
 
 import dumplingInventory from '../assets/dumpling-inventory.json';
+import { processInventoryJson } from "../functions/FileProcessor";
+import CategoryPage from "./CategoryPage";
+import { Item } from "../types/Item";
 
 
 type ShopProps = {
@@ -11,11 +14,10 @@ type ShopProps = {
 
 const ShopPage: FC<ShopProps> = ({getCategories}): ReactElement => {
 
-    const [inventory, setInventory] = useState(dumplingInventory.inventoryList);
+    const [inventory, setInventory] = useState(processInventoryJson(dumplingInventory.inventoryList));
     const [categories,setCategories] = useState(_getCategories());
 
     useEffect(() => {
-        getCategories(_getCategories());
     },[]);
 
     function _getCategories(): string[] {
@@ -33,6 +35,9 @@ const ShopPage: FC<ShopProps> = ({getCategories}): ReactElement => {
     <div className="shop">
         
         <nav>
+        <Link to= 'all'>
+                <button id={'btn_all'}>All</button>
+            </Link>
         {categories.map((category:string) => {
             return (
             <Link to= {category} key={category}>
@@ -42,7 +47,11 @@ const ShopPage: FC<ShopProps> = ({getCategories}): ReactElement => {
         })}
         <input type='text'/>
         </nav>
-        <Outlet />
+        <Routes>
+            <Route index element={<Navigate to="all" replace />} />
+            <Route path=":category" element={<CategoryPage inventory={inventory}/>} />
+        </Routes>
+        {/* <Outlet /> */}
     </div>
     );
 }
