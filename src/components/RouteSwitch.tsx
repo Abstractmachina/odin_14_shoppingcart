@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
-import ShopPage from './components/ShopPage';
+import ShopPage from './ShopPage';
 
 const RouteSwitch: FC  = ():ReactElement => {
   return (
