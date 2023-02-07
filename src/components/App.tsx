@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import '../styles/main.scss';
 
@@ -7,20 +7,26 @@ import HomePage from './Home';
 import ShopPage from './ShopPage';
 import AboutPage from './AboutPage';
 import ShoppingCart from './ShoppingCart';
-import SteamedList from './SteamedList';
-import FriedList from './FriedList';
+import CategoryPage from './CategoryPage';
 
 const App: FC = () : ReactElement => {
+
+    const [categories, setCategories] = useState(new Array<string>());
+
+
+    function getCategories(categories:string[]) {
+        setCategories(categories);
+    }
+
   return (
     <Router>
         <div className="App">
             <Nav />
             <Routes>
                 <Route path='/' element={<HomePage/>} />
-                <Route path='/shop' element={<ShopPage/>}>
-                  <Route index element={<Navigate to="steamed" replace />} />
-                  <Route path='steamed' element={<SteamedList/>} />
-                  <Route path='fried' element={<FriedList/>} />
+                <Route path='/shop' element={<ShopPage getCategories = {getCategories}/>}>
+                  <Route index element={<Navigate to="all" replace />} />
+                  <Route path=':category' element={<CategoryPage />} />
                 </Route>
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/shoppingcart' element={<ShoppingCart/>}/>
