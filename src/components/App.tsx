@@ -8,6 +8,7 @@ import ShopPage from './ShopPage';
 import AboutPage from './AboutPage';
 import ShoppingCart from './ShoppingCart';
 import CategoryPage from './CategoryPage';
+import ProductPage from './ProductPage';
 
 const App: FC = () : ReactElement => {
 
@@ -27,7 +28,9 @@ const App: FC = () : ReactElement => {
                 <Route path='/shop/*' element={<ShopPage getCategories = {getCategories}/>}>
                   {/* <Route index element={<Navigate to="all" replace />} />
                   <Route path=':category' element={<CategoryPage />} /> */}
+                  
                 </Route>
+                
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/shoppingcart' element={<ShoppingCart/>}/>
             </Routes>
