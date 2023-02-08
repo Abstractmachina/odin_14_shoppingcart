@@ -2,7 +2,6 @@ import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import dumplingInventory from '../assets/dumpling-inventory.json';
 import { processInventoryJson } from "../functions/FileProcessor";
-import { NumericFormat } from "react-number-format";
 
 import '../styles/ProductPage.scss';
 
