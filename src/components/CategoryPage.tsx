@@ -49,9 +49,9 @@ const CategoryPage: FC<CategoryProps> = ({inventory, productSelectedHandler} ): 
                             <img src={require(`../assets/${product.image}`)} alt={"Picture of "+product.name}/>
                         </div>
                         <h2>{product.name}</h2>
-                        <h3>EUR { product.unitPrice}</h3>
+                        <h3>EUR { '\u20AC'+Number(product.unitPrice).toFixed(2)}</h3>
                         <h4>Flavors:</h4>
-                        <p>{product.flavors}</p>
+                        <p>{product.flavors.join(", ")}</p>
                     </div>
                 </Link>
             )}) 

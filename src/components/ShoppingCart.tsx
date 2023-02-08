@@ -50,7 +50,7 @@ const ShoppingCart: FC<ShoppingCartProps> = ({order, updateOrder}): ReactElement
         </ol>
         <hr/>
         <h3>Total:  {'\u20AC'+ calcTotal().toFixed(2)}</h3>
-        <button id="btn-checkout" onClick={checkout}>Checkout</button>
+        <button id="btn-checkout" onClick={checkout}>Order Now</button>
 
     </div>);
 }

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import dumplingInventory from '../assets/dumpling-inventory.json';
 import { processInventoryJson } from "../functions/util";
 
@@ -16,6 +16,7 @@ type ProductProps = {
 const ProductPage: FC<ProductProps> = ({pid, addItemHandler}): ReactElement => {
 
     const [product, setProduct] = useState(fetchProduct(pid));
+    const navigate = useNavigate();
 
     useEffect(() => {
         setProduct(fetchProduct(pid));
@@ -36,10 +37,14 @@ const ProductPage: FC<ProductProps> = ({pid, addItemHandler}): ReactElement => {
         addItemHandler(output);
     };
 
+    function goBack() {
+        navigate(-1);
+    }
+
     return (
        
     <div className="product-page">
-        <button id="btn_returnToCategoryPage">Go Back</button>
+        <button id="btn_returnToCategoryPage" onClick={goBack}>Go Back</button>
         <div className="product-display">
             <div className="img-wrapper">
                 <img src={require(`../assets/${product.image}`)} alt={"Picture of "+product.name}/>
