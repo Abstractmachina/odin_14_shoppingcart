@@ -15,9 +15,10 @@ const App: FC = () : ReactElement => {
     const [order, setOrder] = useState(new Order());
 
     function onItemAdded(it:Item) {
-      const or = order;
+      const or : Order = order.deepCopy();
       or.addItem(it);
       setOrder(or);
+
     }
 
   return (

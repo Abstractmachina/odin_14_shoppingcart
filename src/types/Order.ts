@@ -17,6 +17,15 @@ class Order {
         this.items.push( it);
     }
 
+    deepCopy():Order {
+        let result = new Order();
+        //clone items array
+        this.items.forEach(it => {
+            result.addItem(it);
+        })
+        return result;
+    }
+
     get Size() {
         return this.items.length;
     }

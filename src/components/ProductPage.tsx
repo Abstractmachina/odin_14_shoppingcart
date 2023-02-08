@@ -31,7 +31,6 @@ const ProductPage: FC<ProductProps> = ({pid, addItemHandler: addItemHandler}): R
     function handleAddToCart(e:any) {
         e.preventDefault();
         var formdata = new FormData(e.target);
-        console.log(formdata);
         var dataPull:any = formdata.get("quantity");
         let quant:number = (dataPull !== null)? parseFloat(dataPull) : 0;
         let output:Item = {item: product, quantity: quant};

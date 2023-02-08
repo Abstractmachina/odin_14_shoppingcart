@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Order from "../types/Order";
 
@@ -8,7 +8,28 @@ type NavProps = {
     order: Order;
 }
 
+type OrderNumberProps = {
+    orderNumber: number;
+}
+
+const OrderNumber: FC<OrderNumberProps> = ({orderNumber}):ReactElement|null => {
+    if (orderNumber === 0){
+        return (null);
+    }
+    else {
+        return (
+            <div className="item-count">{orderNumber}</div>
+        )
+    }
+}
+
 const Nav: FC<NavProps> = ({order}):ReactElement => {
+
+    useEffect(() => {
+        console.log(order.Size);
+
+    }, []);
+
     return <nav className="main-nav">
         <Link to='/'>
             <h1 className='logo'>Mama's Dumplings</h1>
@@ -24,7 +45,7 @@ const Nav: FC<NavProps> = ({order}):ReactElement => {
                 <li>
                     <div className="cart-wrapper">
                         <img src = {cartGraphic} alt="shopping cart"/>
-                        <div className="item-count">1</div>
+                        <OrderNumber orderNumber={order.Size}/>
                     </div>
                 </li></Link>
             

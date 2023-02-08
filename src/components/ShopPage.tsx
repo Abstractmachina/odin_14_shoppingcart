@@ -34,7 +34,6 @@ const ShopPage: FC<ShopProps> = ({addItemHandler}): ReactElement => {
     }
     
     function onProductSelected(pid:string) {
-        console.log("ShopPage.onProductSelected(): "+pid);
         setSelected(pid);
     }
 
