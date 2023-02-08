@@ -31,7 +31,7 @@ const Nav: FC<NavProps> = ({order}):ReactElement => {
 
     return <nav className="main-nav">
         <Link to='/'>
-            <h1 className='logo'>Mama's Dumplings</h1>
+            <h1 className='logo'>Plan D(umplings)</h1>
         </Link>
         <ul className="nav-links">
             <Link to='/shop'>

@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Link, Outlet, Route, Routes, Navigate } from "react-router-dom";
 
 import dumplingInventory from '../assets/dumpling-inventory.json';
-import { processInventoryJson } from "../functions/FileProcessor";
+import { processInventoryJson } from "../functions/util";
 import { Item } from "../types/Product";
 import CategoryPage from "./CategoryPage";
 import ProductPage from "./ProductPage";

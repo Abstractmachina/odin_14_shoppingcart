@@ -3,6 +3,7 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { Product } from "../types/Product";
 
 import '../styles/CategoryPage.scss';
+import { squashString } from "../functions/util";
 
 type CategoryProps = {
     inventory:Product[];
@@ -40,7 +41,7 @@ const CategoryPage: FC<CategoryProps> = ({inventory, productSelectedHandler} ): 
     <div className="product-page">
         { 
             products.map(product => {
-                const normalizedName = product.name.replace(/\s/g, "");
+                const normalizedName =  squashString(product.name);
                 return (
                 <Link to={"../product/"+ normalizedName} onClick={onProductSelected} key={normalizedName}>
                     <div className="product-card" id={product.name} >

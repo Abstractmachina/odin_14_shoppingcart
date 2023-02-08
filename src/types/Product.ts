@@ -16,7 +16,8 @@ export class Item {
     }
 
     get Name() {return this.product.name;}
-    get Quantity() {return this.quantity}
-    set Quantity(num:number) {this.quantity = num};
-    
+    get Quantity() {return this.quantity;}
+    set Quantity(num:number) {this.quantity = num;}
+    get Image() { return this.product.image;}
+    get UnitPrice() {return this.product.unitPrice;}
 }

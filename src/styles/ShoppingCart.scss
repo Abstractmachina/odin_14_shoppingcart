@@ -3,6 +3,20 @@
         list-style-type: decimal;
         list-style-position: inside;
         li {
+            display: flex;
         }
+    }
+    .img-wrapper {
+        width:10em;
+        height:10em;
+
+        img{
+            width:100%;
+            height:auto;
+        }
+    }
+    .text-wrapper{
+        display: flex;
+        flex-direction: column;
     }
 }

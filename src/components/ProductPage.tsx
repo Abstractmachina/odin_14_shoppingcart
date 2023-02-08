@@ -1,10 +1,9 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import dumplingInventory from '../assets/dumpling-inventory.json';
-import { processInventoryJson } from "../functions/FileProcessor";
+import { processInventoryJson } from "../functions/util";
 
-import '../styles/ProductPage.scss';
-import Order from "../types/Order";
+
 import { Item } from "../types/Product";
 
 
@@ -14,7 +13,7 @@ type ProductProps = {
     
 }
 
-const ProductPage: FC<ProductProps> = ({pid, addItemHandler: addItemHandler}): ReactElement => {
+const ProductPage: FC<ProductProps> = ({pid, addItemHandler}): ReactElement => {
 
     const [product, setProduct] = useState(fetchProduct(pid));
 

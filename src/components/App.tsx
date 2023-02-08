@@ -1,6 +1,7 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import '../styles/main.scss';
+import '../styles/ProductPage.scss';
 import '../styles/ShoppingCart.scss';
 
 
@@ -29,6 +30,10 @@ const App: FC = () : ReactElement => {
       setOrder(or);
     }
 
+    function updateOrder(newOrder:Order) {
+        setOrder(newOrder);
+    }
+
   return (
     <Router>
         <div className="App">
@@ -37,7 +42,7 @@ const App: FC = () : ReactElement => {
                 <Route path='/' element={<HomePage/>} />
                 <Route path='/shop/*' element={<ShopPage addItemHandler={onItemAdded}/>} />
                 <Route path='/about' element={<AboutPage/>}/>
-                <Route path='/shoppingcart' element={<ShoppingCart order={order}/>}/>
+                <Route path='/shoppingcart' element={<ShoppingCart order={order} updateOrder={updateOrder}/>}/>
             </Routes>
         </div>
     </Router>

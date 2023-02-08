@@ -3,7 +3,7 @@
     "inventoryList": [
         {
             "name": "Crab Roe Xiaolongbao",
-            "unitPrice": "10",
+            "unitPrice": "9.9",
             "category": "steamed",
             "flavors": [
                 "savory",
@@ -16,7 +16,7 @@
         },
         {
             "name": "Crab Rangoon Malay Dumpling",
-            "unitPrice": "6",
+            "unitPrice": "6.5",
             "category": "fried",
             "flavors": [
                 "savory",
@@ -27,7 +27,7 @@
         },
         {
             "name": "Beijing Pork and Chives Dumpling",
-            "unitPrice": "4",
+            "unitPrice": "4.2",
             "category": "boiled",
             "flavors": [
                 "savory",
@@ -37,7 +37,7 @@
         },
         {
             "name": "Beef and Onion Dumpling",
-            "unitPrice": "5",
+            "unitPrice": "5.99",
             "category": "boiled",
             "flavors": [
                 "savory",
