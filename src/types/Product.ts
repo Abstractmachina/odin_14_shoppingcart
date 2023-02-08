@@ -7,7 +7,16 @@ export type Product = {
 }
 
 
-export type Item = {
-    item: Product,
-    quantity: number
+export class Item {
+    product: Product;
+    quantity: number;
+    constructor(product:Product, quantity:number) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    get Name() {return this.product.name;}
+    get Quantity() {return this.quantity}
+    set Quantity(num:number) {this.quantity = num};
+    
 }

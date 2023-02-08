@@ -11,7 +11,7 @@ class Order {
     }
 
     addProductQuantity(product:Product, quantity:number):void {
-        this.items.push( {item: product, quantity: quantity})
+        this.items.push( new Item(product, quantity));
     }
     addItem(it : Item) {
         this.items.push( it);

@@ -26,7 +26,6 @@ const OrderNumber: FC<OrderNumberProps> = ({orderNumber}):ReactElement|null => {
 const Nav: FC<NavProps> = ({order}):ReactElement => {
 
     useEffect(() => {
-        console.log(order.Size);
 
     }, []);
 

@@ -33,7 +33,7 @@ const ProductPage: FC<ProductProps> = ({pid, addItemHandler: addItemHandler}): R
         var formdata = new FormData(e.target);
         var dataPull:any = formdata.get("quantity");
         let quant:number = (dataPull !== null)? parseFloat(dataPull) : 0;
-        let output:Item = {item: product, quantity: quant};
+        let output:Item = new Item(product, quant);
         addItemHandler(output);
     };
 

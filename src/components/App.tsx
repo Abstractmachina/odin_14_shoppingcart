@@ -1,6 +1,8 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import '../styles/main.scss';
+import '../styles/ShoppingCart.scss';
+
 
 import Nav from './Nav';
 import HomePage from './Home';
@@ -14,11 +16,17 @@ const App: FC = () : ReactElement => {
 
     const [order, setOrder] = useState(new Order());
 
-    function onItemAdded(it:Item) {
+    function onItemAdded(newItem:Item) {
       const or : Order = order.deepCopy();
-      or.addItem(it);
-      setOrder(or);
 
+      const foundIndex = or.items.findIndex(item => item.Name === newItem.Name)
+      if (foundIndex < 0) {
+        or.addItem(newItem);
+      }
+      else {
+        or.items[foundIndex].Quantity = or.items[foundIndex].Quantity + newItem.Quantity;
+      }
+      setOrder(or);
     }
 
   return (
@@ -29,7 +37,7 @@ const App: FC = () : ReactElement => {
                 <Route path='/' element={<HomePage/>} />
                 <Route path='/shop/*' element={<ShopPage addItemHandler={onItemAdded}/>} />
                 <Route path='/about' element={<AboutPage/>}/>
-                <Route path='/shoppingcart' element={<ShoppingCart/>}/>
+                <Route path='/shoppingcart' element={<ShoppingCart order={order}/>}/>
             </Routes>
         </div>
     </Router>
