@@ -4,18 +4,22 @@ import dumplingInventory from '../assets/dumpling-inventory.json';
 import { processInventoryJson } from "../functions/FileProcessor";
 
 import '../styles/ProductPage.scss';
+import Order from "../types/Order";
+import { Item } from "../types/Product";
 
 
 type ProductProps = {
     pid:string;
+    addItemHandler: (it:Item) => void;
+    
 }
 
-const ProductPage: FC<ProductProps> = ({pid}): ReactElement => {
+const ProductPage: FC<ProductProps> = ({pid, addItemHandler: addItemHandler}): ReactElement => {
 
-    const [item, setItem] = useState(fetchProduct(pid));
+    const [product, setProduct] = useState(fetchProduct(pid));
 
     useEffect(() => {
-        setItem(fetchProduct(pid));
+        setProduct(fetchProduct(pid));
     },[])
 
     function fetchProduct(pid:string) {
@@ -24,21 +28,31 @@ const ProductPage: FC<ProductProps> = ({pid}): ReactElement => {
         return item[0];
     };
 
+    function handleAddToCart(e:any) {
+        e.preventDefault();
+        var formdata = new FormData(e.target);
+        console.log(formdata);
+        var dataPull:any = formdata.get("quantity");
+        let quant:number = (dataPull !== null)? parseFloat(dataPull) : 0;
+        let output:Item = {item: product, quantity: quant};
+        addItemHandler(output);
+    };
+
     return (
        
     <div className="product-page">
         <button id="btn_returnToCategoryPage">Go Back</button>
         <div className="product-display">
             <div className="img-wrapper">
-                <img src={require(`../assets/${item.image}`)} alt={"Picture of "+item.name}/>
+                <img src={require(`../assets/${product.image}`)} alt={"Picture of "+product.name}/>
             </div>
             <div className="text-wrapper">
-                <h2>{item.name}</h2>
-                <h3>EUR{item.unitPrice}</h3>
-                <form>
-                <label htmlFor="quantity">Quantity</label>
-                <input type="number" name="quantity" id="quantity" min="1" max="999" defaultValue={1}/>
-                <button type="submit">Add To Cart</button>
+                <h2>{product.name}</h2>
+                <h3>EUR{product.unitPrice}</h3>
+                <form onSubmit={handleAddToCart}>
+                    <label htmlFor="quantity">Quantity</label>
+                    <input type="number" name="quantity" id="quantity" min="1" max="999" defaultValue={1}/>
+                    <button type="submit">Add To Cart</button>
                 </form>
                 
             </div>

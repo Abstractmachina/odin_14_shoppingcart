@@ -1,7 +1,16 @@
+@import "variables";
+
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: $font_default;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 nav {
@@ -14,13 +23,40 @@ nav {
 .nav-links {
     display: flex;
     gap: 1em;
+    align-items: center;
 
     li {
         color: black;
         text-decoration: none;
         list-style: none;
     }
+
+    .cart-wrapper{
+        position: relative;
+        width:2em;
+        height:2em;
+    
+        img {
+            width: 100%;
+            height:auto;
+        }
+
+        .item-count {
+            position: absolute;
+            right:0em;
+            bottom: 0em;
+            width: 1.1em;
+            height: 1.1em;
+            background-color: red;
+            border-radius: 50%;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.9em;
+            padding: 0.05em;
+        }
+    }
 }
+
 
 .main-nav {
     background-color: grey;

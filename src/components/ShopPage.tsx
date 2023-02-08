@@ -3,16 +3,18 @@ import { Link, Outlet, Route, Routes, Navigate } from "react-router-dom";
 
 import dumplingInventory from '../assets/dumpling-inventory.json';
 import { processInventoryJson } from "../functions/FileProcessor";
+import { Item } from "../types/Product";
 import CategoryPage from "./CategoryPage";
 import ProductPage from "./ProductPage";
 
 
 type ShopProps = {
-    getCategories: (categories:string[]) => void;
+    // getCategories: (categories:string[]) => void;
+    addItemHandler: (it:Item) => void;
 }
 
 
-const ShopPage: FC<ShopProps> = ({getCategories}): ReactElement => {
+const ShopPage: FC<ShopProps> = ({addItemHandler}): ReactElement => {
 
     const [inventory, setInventory] = useState(processInventoryJson(dumplingInventory.inventoryList));
     const [categories,setCategories] = useState(_getCategories());
@@ -35,6 +37,12 @@ const ShopPage: FC<ShopProps> = ({getCategories}): ReactElement => {
         console.log("ShopPage.onProductSelected(): "+pid);
         setSelected(pid);
     }
+
+    function onItemAdded(it:Item) {
+        addItemHandler(it);
+    }
+
+
     return (
         
     <div className="shop">
@@ -55,7 +63,7 @@ const ShopPage: FC<ShopProps> = ({getCategories}): ReactElement => {
         <Routes>
             <Route index element={<Navigate to="all" replace />} />
             <Route path=":category" element={<CategoryPage inventory={inventory} productSelectedHandler={onProductSelected}/>} />
-            <Route path="product/:PID" element={<ProductPage pid={selected}/>}/>
+            <Route path="product/:PID" element={<ProductPage pid={selected} addItemHandler={onItemAdded}/>}/>
         </Routes>
         {/* <Outlet /> */}
     </div>

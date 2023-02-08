@@ -1,15 +1,11 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
-import { Item } from "../types/Item";
+import { Product } from "../types/Product";
 
 import '../styles/CategoryPage.scss';
-import ProductPage from "./ProductPage";
-import { MouseEventHandler } from "react";
-
-
 
 type CategoryProps = {
-    inventory:Item[];
+    inventory:Product[];
     productSelectedHandler: (pid:string) => void;
 }
 
@@ -23,7 +19,7 @@ const CategoryPage: FC<CategoryProps> = ({inventory, productSelectedHandler} ): 
         setProducts(getProducts(category));
     },[category])
 
-
+    
     function getProducts(category:string|undefined) {
         if (category === 'all') return inventory;
        let result = inventory.filter(item => item.category === category)

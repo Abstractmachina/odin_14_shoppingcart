@@ -7,34 +7,29 @@ import HomePage from './Home';
 import ShopPage from './ShopPage';
 import AboutPage from './AboutPage';
 import ShoppingCart from './ShoppingCart';
-import CategoryPage from './CategoryPage';
-import ProductPage from './ProductPage';
+import Order from '../types/Order';
+import { Item } from '../types/Product';
 
 const App: FC = () : ReactElement => {
 
-    const [categories, setCategories] = useState(new Array<string>());
+    const [order, setOrder] = useState(new Order());
 
-
-    function getCategories(categories:string[]) {
-        setCategories(categories);
+    function onItemAdded(it:Item) {
+      const or = order;
+      or.addItem(it);
+      setOrder(or);
     }
 
   return (
     <Router>
         <div className="App">
-            <Nav />
+            <Nav order={order}/>
             <Routes>
                 <Route path='/' element={<HomePage/>} />
-                <Route path='/shop/*' element={<ShopPage getCategories = {getCategories}/>}>
-                  {/* <Route index element={<Navigate to="all" replace />} />
-                  <Route path=':category' element={<CategoryPage />} /> */}
-                  
-                </Route>
-                
+                <Route path='/shop/*' element={<ShopPage addItemHandler={onItemAdded}/>} />
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/shoppingcart' element={<ShoppingCart/>}/>
             </Routes>
-
         </div>
     </Router>
   );

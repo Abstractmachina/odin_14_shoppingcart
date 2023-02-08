@@ -1,10 +1,10 @@
-import { Item } from "../types/Item";
+import { Product } from "../types/Product";
 
-export function processInventoryJson(rawInventory:any[]) : Item[] {
-    let outPutArray = new Array<Item>();
+export function processInventoryJson(rawInventory:any[]) : Product[] {
+    let outPutArray = new Array<Product>();
 
     rawInventory.forEach(obj => {
-        let item:Item = {
+        let item:Product = {
             name: obj.name,
             unitPrice: obj.unitPrice,
             category: obj.category,
