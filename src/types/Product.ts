@@ -8,8 +8,8 @@ export type Product = {
 
 
 export class Item {
-    product: Product;
-    quantity: number;
+    private product: Product;
+    private quantity: number;
     constructor(product:Product, quantity:number) {
         this.product = product;
         this.quantity = quantity;
